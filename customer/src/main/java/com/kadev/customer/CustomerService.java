@@ -1,12 +1,14 @@
-package com.kadev.customer.services;
+package com.kadev.customer;
 
-import com.kadev.customer.controller.CustomerRegistrationRequest;
-import com.kadev.customer.model.Customer;
-import com.kadev.customer.repository.CustomerRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-public record CustomerService(CustomerRepository customerRepository) {
+@AllArgsConstructor
+public class CustomerService{
+
+    private final CustomerRepository customerRepository;
+
     public void registerCustomer(CustomerRegistrationRequest request) {
         Customer customer = Customer.builder()
                 .firstName(request.firstName())

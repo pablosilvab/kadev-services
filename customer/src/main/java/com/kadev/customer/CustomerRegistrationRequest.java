@@ -1,4 +1,4 @@
-package com.kadev.customer.controller;
+package com.kadev.customer;
 
 public record CustomerRegistrationRequest(
         String firstName,

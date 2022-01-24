@@ -1,4 +1,4 @@
-package com.kadev.customer.model;
+package com.kadev.customer;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
