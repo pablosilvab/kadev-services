@@ -1,4 +1,4 @@
-package com.kadev.customer;
+package com.kadev.clients.fraud;
 
 public record FraudCheckResponse(Boolean isFraudster) {
 }

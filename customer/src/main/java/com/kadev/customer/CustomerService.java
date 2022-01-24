@@ -1,15 +1,20 @@
 package com.kadev.customer;
 
+import com.kadev.clients.fraud.FraudCheckResponse;
+import com.kadev.clients.fraud.FraudClient;
+import com.kadev.clients.notification.NotificationClient;
+import com.kadev.clients.notification.NotificationRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
 @AllArgsConstructor
-public class CustomerService{
+public class CustomerService {
 
     private final CustomerRepository customerRepository;
-    private final RestTemplate restTemplate;
+    private final FraudClient fraudClient;
+    private final NotificationClient notificationClient;
 
     public void registerCustomer(CustomerRegistrationRequest request) {
         Customer customer = Customer.builder()
@@ -20,15 +25,17 @@ public class CustomerService{
         // TODO: check if email valid
         // TODO: check if email not taken
         customerRepository.saveAndFlush(customer);
-        // TODO: check is fraudster customer
-        FraudCheckResponse fraudCheckResponse = restTemplate.getForObject(
-                "http://FRAUD/api/v1/fraud-check/{customerId}",
-                FraudCheckResponse.class,
-                customer.getId()
-        );
-        if (fraudCheckResponse.isFraudster()){
+        FraudCheckResponse fraudCheckResponse = fraudClient.isFraudster(customer.getId());
+
+        if (fraudCheckResponse.isFraudster()) {
             throw new IllegalStateException("Fraudster!!");
         }
-        // TODO: send notification
+
+        notificationClient.sendNotification(new NotificationRequest(
+                customer.getId(),
+                customer.getEmail(),
+                String.format("Hi %s, welcome to Kadev!",customer.getFirstName())
+        ));
+
     }
 }
