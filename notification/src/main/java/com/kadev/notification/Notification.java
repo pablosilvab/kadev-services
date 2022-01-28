@@ -1,4 +1,4 @@
-package com.kadev.clients.notification;
+package com.kadev.notification;
 
 import lombok.*;
 
