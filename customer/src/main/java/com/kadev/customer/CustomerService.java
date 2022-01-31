@@ -3,7 +3,7 @@ package com.kadev.customer;
 import com.kadev.amqp.RabbitMQMessageProducer;
 import com.kadev.clients.fraud.FraudCheckResponse;
 import com.kadev.clients.fraud.FraudClient;
-import com.kadev.notification.NotificationRequest;
+import com.kadev.clients.notification.NotificationRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +39,6 @@ public class CustomerService {
                 "internal.exchange",
                 "internal.notification.routing-key"
         );
-
 
 
     }
