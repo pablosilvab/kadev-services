@@ -1,6 +1,6 @@
 package com.kadev.notification.rabbitmq;
 
-import com.kadev.notification.NotificationRequest;
+import com.kadev.clients.notification.NotificationRequest;
 import com.kadev.notification.NotificationService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

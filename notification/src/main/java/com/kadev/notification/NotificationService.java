@@ -1,5 +1,6 @@
 package com.kadev.notification;
 
+import com.kadev.clients.notification.NotificationRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

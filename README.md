@@ -35,3 +35,26 @@ API-Gateway
 ```
 java -jar apigateway/target/apigateway-1.0-SNAPSHOT.jar 
 ```
+
+Using PropertySouce annotation:
+```java
+@PropertySources({
+        @PropertySource({"classpath:clients.properties" , "classpath:clients-${spring.profiles.active}.properties"})
+})
+```
+
+
+Build and Push Docker images:
+```
+mvn clean package -P build-docker-image
+```
+
+Init database: 
+```
+kubectl exec -it postgres-0 -- psql -U kadev
+```
+
+Expose services
+```
+minikube tunnel
+```
